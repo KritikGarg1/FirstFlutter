@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutternew/products.dart';
+import 'ProductControl.dart';
 
 class ProductManager extends StatefulWidget {
   @override
@@ -13,21 +14,20 @@ class ProductManager extends StatefulWidget {
 class _ProductManagerState extends State<ProductManager> {
   List<String> _products = ['World tester'];
 
+  void AddProduct(String product){
+    setState(() {
+      _products.add(product);
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Column(children: [
       Container(
         margin: EdgeInsets.all(20.0),
-        child: RaisedButton(
-          color: Theme.of(context).primaryColorLight,
-          onPressed: () {
-            setState(() {
-              _products.add('Forest');
-            });
-          },
-          child: Text('Choose the World'),
-        ),
+        child: ProductControl(AddProduct)
       ),
       Products(_products)
     ]);
